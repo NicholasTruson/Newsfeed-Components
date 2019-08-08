@@ -85,6 +85,33 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Remember, remember...',
+    date: 'Nov 5th, 1984',
+    firstParagraph: `Remember, remember, the fifth of November. `,
+
+    secondParagraph: `The gunpowder treason and plot. `,
+
+    thirdParagraph: `I can think of no reason, why the gunpowder treason, should ever be forgot.  - V.`
+  },
+  {
+    title: 'Two Lives...',
+    date: 'Roughly 500 BC',
+    firstParagraph: `We all... `,
+
+    secondParagraph: `have two lives... `,
+
+    thirdParagraph: `the second begins when we realize we have just one.  - Confucius.`
+  },
+  {
+    title: 'Courage...',
+    date: 'Early 1990',
+    firstParagraph: `Nature loves courage. You make the commitment and nature will respond to that commitment by removing impossible obstacles. Dream the impossible dream and the world will not grind you under, it will lift you up. `,
+
+    secondParagraph: `This is the trick. This is what all these teachers and philosophers who really counted, who really touched the alchemical gold, this is what they understood. This is the shamanic dance in the waterfall. This is how magic is done. `,
+
+    thirdParagraph: `By hurling yourself into the abyss and discovering it's a feather bed.  - Terence McKenna.`
   }
 ];
 
@@ -112,3 +139,46 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
 
 */
+
+window.addEventListener('load', (e) => {
+  
+const articlesContainer = document.querySelector('.articles');
+data.forEach(data => {
+             articlesContainer.appendChild(createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph));
+            });
+            function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+              const newsArticleDiv = document.createElement('div');
+              const newsArticleTitle = document.createElement('h2');
+              const newsArticleDate = document.createElement('p');
+              const newsFirstParagraph = document.createElement('p');
+              const newsSecondParagraph = document.createElement('p');
+              const newsThirdParagraph = document.createElement('p');
+              const articleButton = document.createElement('span');
+      
+              newsArticleDiv.appendChild(newsArticleTitle);
+              newsArticleDiv.appendChild(newsArticleDate);
+              newsArticleDiv.appendChild(newsFirstParagraph);
+              newsArticleDiv.appendChild(newsSecondParagraph);
+              newsArticleDiv.appendChild(newsThirdParagraph);
+              newsArticleDiv.appendChild(articleButton);
+      
+              newsArticleDiv.classList.add('article');
+              newsArticleDate.classList.add('date');
+              articleButton.classList.add('expandButton');
+      
+              articleButton.textContent = "Read More";
+              newsArticleTitle.textContent = title;
+              newsArticleDate.textContent = date;
+              newsFirstParagraph.textContent = firstParagraph;
+              newsSecondParagraph.textContent = secondParagraph;
+              newsThirdParagraph.textContent = thirdParagraph;
+      
+              articleButton.addEventListener('click', (e) => {
+                  console.log("button was clicked", event.target);
+                  newsArticleDiv.classList.toggle('article-open');
+              })
+      
+              return newsArticleDiv;
+          }
+      });
+
