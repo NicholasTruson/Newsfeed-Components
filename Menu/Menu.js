@@ -34,29 +34,75 @@ let menuItems = [
   
 */
 
+// *** Window *** //
+
 window.addEventListener('load', (e) => {
 
-  const menu = document.querySelector('.header');
-  const navList = document.createElement('ul');
-    menu.appendChild(navList);
+// *** Const's *** //
 
-  function createNavItem (name) {
-    const navItem = document.createElement('li');
-      navList.appendChild(navItem);
-      
-      navItem.textContent = name;
+  const menuButton = document.querySelector('.menu-button');
 
-        return navItem;
+  const menuBody = document.querySelector('body');
+
+  menuBody.appendChild(createMenu(menuItems))
+
+// *** Create Function *** //
+
+  function createMenu(element) {
+
+    const menu1 = document.createElement('div');
+
+    const list1 = document.createElement('ul');
+
+    menu1.appendChild(list1);
+
+    menu1.classList.add('menu')
+
+    menuButton.addEventListener('click', (e) => {
+      menu1.classList.toggle('menu--open')
+    })
+
+// *** listitem *** //
+
+  menuItems.forEach (element => {
+    const listItem = document.createElement('li');
+    listItem.textContent = element
+    list1.appendChild(listItem)
+  })
+
+  return menu1
+
   }
 
-  const navImg = document.querySelector('.menu-button');
-    navImg.addEventListener('click', event => {
-    menu.classList.toggle('menu--open');
-    
+  
+
 })
 
-menuItems.forEach(item => {
+/*const menu = document.querySelector('.menu-button');
+const menuDiv = document.createElement('div')
+  menuDiv.classList.add('menu');
+const navList = document.createElement('ul');
+  menuDiv.appendChild(navList);
+
+  createNavItem(menuItems)
+  menuItems.appendChild(menulist);
+  
+function createNavItem (menulist) {
+  const navItem = document.createElement('li');
+    navList.appendChild(navItem);
+    navItem.textContent = name;
+
+    const navImg = document.querySelector('.menu-button');
+    navImg.addEventListener('click', event => {
+    menuDiv.classList.toggle('menu--open');
+    console.log('i was clicked')
+    })
+
+menulist.forEach(item => {
+  const li = document.createElement('li');
+  li.textContent = item;
   navList.appendChild(createNavItem(item))
 })
 
-});
+      return navItem;
+}*/
